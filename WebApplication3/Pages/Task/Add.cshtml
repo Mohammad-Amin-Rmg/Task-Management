@@ -1,0 +1,72 @@
+﻿@page
+@using Entities.Enums
+@model TaskManagementApp.Pages.Task.AddModel
+
+<style>
+    .task-field {
+        display: none; 
+    }
+</style>
+
+<h1>Add Task</h1>
+
+<form method="post">
+
+    <div class="form-group">
+        <label for="Name">Name</label>
+        <input type="text" class="form-control" id="Name" name="TaskVm.Name" placeholder="Enter Name" required>
+    </div>
+    <div class="form-group">
+        <label for="Description">Description</label>
+        <textarea id="Description" name="TaskVm.Description" class="form-control" placeholder="Description"></textarea>
+    </div>
+    <div class="form-group">
+        <label for="TaskType">Task Type</label>
+        <select id="TaskType" name="TaskVm.TaskType" class="form-control" onchange="toggleFields()" required>
+            <option value="">Select Task Type</option>
+            <option value="Bug">Bug Task</option>
+            <option value="Feature">Feature Task</option>
+            <option value="General">General Task</option>
+        </select>
+    </div>
+    <div class="form-group">
+        <label for="Priority">Task Priority</label>
+        <select asp-for="TaskVm!.Priority" asp-items="Html.GetEnumSelectList<Priority>()" class="form-control" required>
+            <option value="">Select Task Priority</option>
+        </select>
+    </div>
+    <div class="form-group">
+        <label for="Status">Task Status</label>
+        <select asp-for="TaskVm!.Status" asp-items="Html.GetEnumSelectList<Status>()" class="form-control" required>
+            <option value="">Select Task Status</option>
+        </select>
+    </div>
+    <div id="estimateInput" class="task-field">
+        <label for="Estimate">Estimate</label>
+        <input type="time" class="form-control" id="Estimate" name="TaskVm.Estimate" />
+    </div>
+    <div id="severityInput" class="task-field">
+        <label for="Severity">Bug Severity</label>
+        <select asp-for="TaskVm!.Severity" asp-items="Html.GetEnumSelectList<BugSeverity>()" class="form-control">
+            <option value="">Select Bug Severity</option>
+        </select>
+    </div>
+    <div id="reviewerInput" class="task-field">
+        <label class="control-label">Reviewer</label>
+        <select asp-for="TaskVm.ReviewerId" class="form-control" asp-items="Model.Users"></select>
+    </div>
+    <button type="submit" class="btn btn-primary">Add Task</button>
+
+</form>
+
+@section Scripts {
+    <script type="text/javascript">
+        function toggleFields() {
+            var taskType = document.getElementById("TaskType").value;
+
+            document.getElementById("estimateInput").style.display = (taskType === "Feature") ? "block" : "none";
+            document.getElementById("reviewerInput").style.display = (taskType === "General") ? "block" : "none";
+            document.getElementById("severityInput").style.display = (taskType === "Bug") ? "block" : "none";
+        }
+    </script>
+}

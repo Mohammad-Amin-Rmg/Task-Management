@@ -1,0 +1,23 @@
+@page
+@using Entities.Enums
+@using Microsoft.AspNetCore.Mvc.TagHelpers
+@model TaskManagementApp.Pages.User.Add
+
+<form method="post">
+
+    <div class="form-group">
+        <label for="Name">Name</label>
+        <input type="text" class="form-control" id="Name" name="UserVm.Name" placeholder="Enter Name">
+    </div>
+    <div class="form-group">
+        <label for="exampleInputEmail1">Email address</label>
+        <input type="email" class="form-control" id="exampleInputEmail1" name="UserVm.Email" aria-describedby="emailHelp" placeholder="Enter email">
+    </div>
+    <div class="form-group">
+        <label for="Role"> Role</label>
+        <select asp-for="UserVm!.Role" asp-items="Html.GetEnumSelectList<Roles>()" class="form-control" required>
+            <option value="">Select User Roles</option>
+        </select>
+    </div>
+    <button type="submit" class="btn btn-primary">Add User</button>
+</form>

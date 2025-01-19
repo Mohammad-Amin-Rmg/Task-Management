@@ -1,0 +1,30 @@
+@page
+@model TaskManagementApp.Pages.User.Show
+
+<h1 class="display-2">Users</h1>
+<table class="table">
+    <thead class="thead-dark">
+    <tr>
+        <th scope="col">#</th>
+        <th scope="col">Name</th>
+        <th scope="col">Email</th>
+        <th scope="col">Role</th>
+    </tr>
+    </thead>
+    <tbody>
+    @if (Model.Users is not null)
+    {
+        int i = 1;
+        @foreach (var user in Model.Users)
+        {
+            <tr>
+                <th scope="row">@i</th>
+                <td>@user.Name</td>
+                <td>@user.Email</td>
+                <td>@user.Role</td>
+            </tr>
+            i++;
+        }
+    }
+    </tbody>
+</table>

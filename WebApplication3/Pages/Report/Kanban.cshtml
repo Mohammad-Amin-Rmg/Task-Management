@@ -1,0 +1,83 @@
+@page
+@using Entities
+@model TaskManagementApp.Pages.Report.Kanban
+
+<h2>Kanban Board</h2>
+
+<div class="kanban-board">
+    @foreach (var statusGroup in Model.TasksByStatus)
+    {
+        <div class="kanban-column">
+            <h3>@statusGroup.Key</h3>
+            <div class="kanban-tasks">
+                @foreach (var task in statusGroup.Value)
+                {
+                    <div class="kanban-task">
+
+                        <h4>@task.Name</h4>
+
+                        @if (task.GetType() == typeof(BugTask))
+                        {
+                            <p><strong>Type: Bug</strong></p>
+                        }
+                        @if (task.GetType() == typeof(FeatureTask))
+                        {
+                            <p><strong>Type: Feature</strong></p>
+                        }
+                        @if (task.GetType() == typeof(GeneralTask))
+                        {
+                            <p><strong>Type: General</strong></p>
+                        }
+
+                        <p><strong>Priority:</strong> @task.Priority</p>
+                        <p><strong>Assigned To:</strong> @(task.AssignedUser?.Name ?? "N/A")</p>
+                        <p><strong>Deadline:</strong> @task.Deadline.ToString("yyyy-MM-dd")</p>
+                    </div>
+                }
+            </div>
+        </div>
+    }
+</div>
+
+<style>
+    .kanban-board {
+        display: flex;
+        gap: 20px;
+        padding: 20px;
+    }
+
+    .kanban-column {
+        flex: 1;
+        background-color: #f4f4f4;
+        border-radius: 5px;
+        padding: 10px;
+        box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    }
+
+    .kanban-column h3 {
+        text-align: center;
+        margin-bottom: 10px;
+    }
+
+    .kanban-tasks {
+        display: flex;
+        flex-direction: column;
+        gap: 10px;
+    }
+
+    .kanban-task {
+        background-color: #fff;
+        border: 1px solid #ddd;
+        border-radius: 5px;
+        padding: 10px;
+        box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
+    }
+
+    .kanban-task h4 {
+        margin: 0 0 5px 0;
+    }
+
+    .kanban-task p {
+        margin: 5px 0;
+    }
+</style>

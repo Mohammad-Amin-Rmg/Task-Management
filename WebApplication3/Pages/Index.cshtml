@@ -1,0 +1,71 @@
+﻿@page
+@model IndexModel
+@{
+    ViewData["Title"] = "Home page";
+}
+
+<h1 class="text-center">Dashboard</h1>
+
+<!-- Bootstrap Dashboard Layout -->
+<div class="container mt-4">
+    <div class="row">
+
+        <!-- Column 1: Manage Tasks -->
+        <div class="col-md-4">
+            <div class="card mb-4">
+                <div class="card-header">
+                    <h5>Manage Tasks</h5>
+                </div>
+                <div class="card-body">
+                    <!-- Button for Add Task -->
+                    <a href="/Task/Add" class="btn btn-primary btn-block w-100"> Add Task </a>
+                    <!-- Button for Show Tasks -->
+                    <a href="/Task/Show" class="btn btn-info btn-block w-100 mt-2">Show Tasks</a>
+                </div>
+            </div>
+        </div>
+
+        <!-- Column 2: Manage Projects -->
+        <div class="col-md-4">
+            <div class="card mb-4">
+                <div class="card-header">
+                    <h5>Manage Projects</h5>
+                </div>
+                <div class="card-body">
+                    <!-- Button for Add Project -->
+                    <a href="/Project/Add" class="btn btn-primary btn-block w-100"> Add Project </a>
+                    <!-- Button for Show Projects -->
+                    <a href="/Project/Show" class="btn btn-info btn-block w-100 mt-2">Show Projects</a>
+                </div>
+            </div>
+        </div>
+
+        <!-- Column 2: Manage Report -->
+        <div class="col-md-4">
+            <div class="card mb-4">
+                <div class="card-header">
+                    <h5>Manage Report</h5>
+                </div>
+                <div class="card-body">
+                    <!-- Button for Add Project -->
+                    <a href="/Report/Kanban" class="btn btn-primary btn-block w-100"> Show Kanban </a>
+                </div>
+            </div>
+        </div>
+
+        <!-- Column 3: Manage Users -->
+        <div class="col-md-4">
+            <div class="card mb-4">
+                <div class="card-header">
+                    <h5>Manage Users</h5>
+                </div>
+                <div class="card-body">
+                    <!-- Button for Add User -->
+                    <a href="/User/Add" class="btn btn-primary btn-block w-100"> Add User </a>
+                    <!-- Button for Show Users -->
+                    <a href="/User/Show" class="btn btn-info btn-block w-100 mt-2">Show Users</a>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

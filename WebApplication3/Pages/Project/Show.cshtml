@@ -1,0 +1,38 @@
+@page
+@model TaskManagementApp.Pages.Project.Show
+
+<div class="row">
+    <h1 class="display-2">Projects</h1>
+    <table class="table">
+        <thead class="thead-inverse">
+
+        <tr>
+            <th>Name</th>
+            <th>Description</th>
+            <th>Users</th>
+        </tr>
+
+        </thead>
+        <tbody>
+        @if (Model.Projects is not null)
+        {
+            @foreach (var task in Model.Projects)
+            {
+                <tr>
+                    <td>@task.Name</td>
+                    <td>@task.Description</td>
+                    <td>
+                        @foreach (var user in task.Users)
+                        {
+                            <ul>
+                                <li><strong>@user.Name - (@user.Role)</strong></li>
+
+                            </ul>
+                        }
+                    </td>
+                </tr>
+            }
+        }
+        </tbody>
+    </table>
+</div>

@@ -1,0 +1,61 @@
+﻿@page
+@using Entities
+@model ShowModel
+
+<div class="row">
+    <h1 class="display-2">Tasks</h1>
+    <table class="table">
+        <thead class="thead-inverse">
+
+        <tr>
+            <th>Title</th>
+            <th>Description</th>
+            <th>Type</th>
+            <th>Assigned User</th>
+        </tr>
+
+        </thead>
+        <tbody>
+        @if (Model.Tasks is not null)
+        {
+            @foreach (var task in Model.Tasks)
+            {
+                <tr>
+                    <td>@task.Name</td>
+                    <td>@task.Description</td>
+                    <td>
+                        @switch (task!)
+                        {
+                            case BugTask:
+                                @:Bug Task
+                                break;
+
+                            case FeatureTask:
+                                @:Feature Task
+                                break;
+
+                            case GeneralTask:
+                                @:General Task
+                                break;
+
+                            default:
+                                @:Unknown
+                                break;
+                        }
+                    </td>
+                    <td>@(task.AssignedUser?.Name ?? "N/A")</td>
+                    <td>
+                        <!-- Edit Button -->
+                        <a asp-page="Edit" asp-route-id="@task.Id" class="btn btn-sm btn-primary">Edit</a>
+
+                        <!-- Delete Button -->
+                        <a asp-page="Delete" asp-route-id="@task.Id" class="btn btn-sm btn-danger">Delete</a>
+
+                        <a asp-page="AssignTask" asp-route-id="@task.Id" class="btn btn-sm btn-primary">Assign</a>
+                    </td>
+                </tr>
+            }
+        }
+        </tbody>
+    </table>
+</div>
