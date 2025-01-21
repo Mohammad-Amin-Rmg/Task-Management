@@ -11,11 +11,12 @@
   </ItemGroup>
 
   <ItemGroup>
+    <_ContentIncludedByDefault Remove="Pages\Search\Index.cshtml" />
     <_ContentIncludedByDefault Remove="Pages\test\Suppliers.cshtml" />
   </ItemGroup>
 
   <ItemGroup>
-    <Folder Include="Pages\Search\" />
+    <UpToDateCheckInput Remove="Pages\Search\Index.cshtml" />
   </ItemGroup>
 
 </Project>

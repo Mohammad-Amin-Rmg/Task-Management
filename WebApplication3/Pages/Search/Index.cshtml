@@ -1,0 +1,17 @@
+﻿@page
+@model TaskManagementApp.Pages.Search.IndexModel
+@{
+    ViewData["Title"] = "Search Results";
+}
+
+<h2>Search Results</h2>
+<form method="get">
+    <input type="text" name="query" placeholder="Search..." />
+    <button type="submit">Search</button>
+</form>
+<ul>
+    @foreach (var item in Model.Results)
+    {
+        <li>@item.Id - @item.TaskName: @item.AssignedUserName (@item.Status)</li>
+    }
+</ul>
